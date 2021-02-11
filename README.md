@@ -1,4 +1,4 @@
-# Witty: Learn Online on your Own Time
+# Witty: Just the Whittiest learning Program
 
 A React app dedicated to promoting online learning via video and reading lessons.
 ## How to Run:
