@@ -11,8 +11,8 @@ export default class Profile extends Component {
 				<Aux>
 					<p>Students: </p>
 					<ul>
-						<li>{'{STUDENT1: RANGE X-Y}'}</li>
-						<li>{'{STUDENT2: RANGE X-Y}'}</li>
+						<li>{'{STUDENT_1_NAME: Level K}'}</li>
+						<li>{'{STUDENT_2_NAME: Level 56}'}</li>
 					</ul>
 					<p>Subscription: Active until {'{DATE}'}</p>
 					{/* TODO: Remove inline when I get a better hold of MUI styling */}
