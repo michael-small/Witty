@@ -1,4 +1,5 @@
 import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Navigation from './components/Navigation/Navigation';
@@ -7,13 +8,16 @@ import Profile from './components/Profile/Profile';
 
 function App() {
 	return (
-		<div className='App'>
-			<BrowserRouter>
-				<Navigation />
-				<Route exact path='/' component={Home} />
-				<Route exact path='/profile' component={Profile} />
-			</BrowserRouter>
-		</div>
+		<CssBaseline>
+			<div className='App'>
+				{' '}
+				<BrowserRouter>
+					<Navigation />
+					<Route exact path='/' component={Home} />
+					<Route exact path='/profile' component={Profile} />
+				</BrowserRouter>
+			</div>
+		</CssBaseline>
 	);
 }
 

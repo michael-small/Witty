@@ -1,7 +1,28 @@
+html {
+  background-color: #1a2b51;
+}
+
 .App {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
   padding: 0.5rem;
+  background-color: #1a2b51;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.MuiButton-text {
+  color: #ff9c00 !important;
+}
+
+h1 {
+  color: #ff9c00;
+}
+
+/* readability is questionable on this */
+.MuiSvgIcon-root {
+  color: #ff9c00;
+}
+
