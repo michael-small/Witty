@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 // ----conditional icons----
 import HomeIcon from '@material-ui/icons/Home';
-// import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HelpIcon from '@material-ui/icons/Help';
 // ----misc icons----
@@ -63,7 +63,7 @@ export default function TemporaryDrawer() {
 
 	const navLinks = [
 		{ page: 'Home', path: '/' },
-		// { page: 'Lessons', path: '/lessons' },
+		{ page: 'Workshops', path: '/workshops' },
 		{ page: 'Profile', path: '/profile' },
 	];
 
@@ -85,6 +85,8 @@ export default function TemporaryDrawer() {
 									<HomeIcon />
 								) : link.page === 'Profile' ? (
 									<AccountCircleIcon />
+								) : link.page === 'Workshops' ? (
+									<AssignmentIcon />
 								) : (
 									<HelpIcon />
 								)}

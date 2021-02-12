@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
+import WorkshopHome from './components/WorkshopHome/WorkshopHome';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Navigation />
 					<Route exact path='/' component={Home} />
 					<Route exact path='/profile' component={Profile} />
+					<Route exact path='/workshops' component={WorkshopHome} />
 				</BrowserRouter>
 			</div>
 		</CssBaseline>
