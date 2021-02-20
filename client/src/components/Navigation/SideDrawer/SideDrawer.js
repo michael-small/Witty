@@ -20,6 +20,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import HelpIcon from '@material-ui/icons/Help';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 // ----misc icons----
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -64,6 +65,7 @@ export default function TemporaryDrawer() {
 	const navLinks = [
 		{ page: 'Home', path: '/' },
 		{ page: 'Workshops', path: '/workshops' },
+		{ page: 'Blog', path: '/blog' },
 		{ page: 'Profile', path: '/profile' },
 	];
 
@@ -87,6 +89,8 @@ export default function TemporaryDrawer() {
 									<AccountCircleIcon />
 								) : link.page === 'Workshops' ? (
 									<AssignmentIcon />
+								) : link.page === 'Blog' ? (
+									<LocalLibraryIcon />
 								) : (
 									<HelpIcon />
 								)}
