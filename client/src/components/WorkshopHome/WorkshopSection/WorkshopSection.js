@@ -1,6 +1,7 @@
 import React from 'react';
 import Aux from '../../hocs/Aux';
 import { gql, useQuery } from '@apollo/client';
+import WorkshopLesson from './WorkshopLesson/WorkshopLesson';
 
 const GET_SECTIONS = gql`
 	query GetSections {
@@ -21,12 +22,17 @@ export default function WorkshopSection() {
 	return (
 		<Aux>
 			<h1>WorkshopSection</h1>
-			{data.sections.map((section, index) => (
+			{data.sections.map(({ sectionTitle, lessons }, index) => (
 				<div key={index}>
-					<h2>{section.sectionTitle}</h2>
+					<h2>{sectionTitle}</h2>
+					{lessons.map((lesson, indexVal) => (
+						<WorkshopLesson
+							lessonTitle={lesson.lessonTitle}
+							key={indexVal}
+						/>
+					))}
 				</div>
 			))}
-			<h2></h2>
 		</Aux>
 	);
 }
