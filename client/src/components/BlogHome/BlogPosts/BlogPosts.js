@@ -15,6 +15,7 @@ const GET_POSTS = gql`
 			id
 			date
 			title
+			excerpt
 			tags
 		}
 	}
@@ -33,7 +34,7 @@ export default function BlogPosts() {
 
 	return (
 		<Aux>
-			{data.posts.map(({ title, date, tags }, postIndex) => (
+			{data.posts.map(({ title, date, excerpt, tags }, postIndex) => (
 				<StyledCard key={postIndex}>
 					<CardContent>
 						<Typography variant='h5' component='h2'>
@@ -41,6 +42,9 @@ export default function BlogPosts() {
 						</Typography>
 						<Typography variant='subtitle1'>
 							<i>Published: {date}</i>
+						</Typography>
+						<Typography variant='subtitle1'>
+							<p>{excerpt}</p>
 						</Typography>
 						{tags.map((tag, tagIndex) => (
 							<Chip key={tagIndex} label={tag}></Chip>

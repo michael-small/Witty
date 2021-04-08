@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile';
 import WorkshopHome from './components/WorkshopHome/WorkshopHome';
 import Workshop from './components/WorkshopHome/Workshop/Workshop';
 import BlogHome from './components/BlogHome/BlogHome';
+import BlogPost from './components/BlogHome/BlogPost/BlogPost';
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 					<Route exact path='/workshops' component={WorkshopHome} />
 					<Route exact path='/workshop' component={Workshop} />
 					<Route exact path='/blog' component={BlogHome} />
+					<Route exact path='/testPost' component={BlogPost} />
 				</BrowserRouter>
 			</div>
 		</CssBaseline>
