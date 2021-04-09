@@ -8,6 +8,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { makeStyles } from '@material-ui/core/styles';
 
 const GET_SECTIONS = gql`
 	query GetSections {
@@ -22,11 +23,20 @@ const GET_SECTIONS = gql`
 	}
 `;
 
+const useStyles = makeStyles({
+	lessonBorder: {
+		backgroundColor: '#C8C8C8',
+		margin: '4px',
+	},
+});
+
 export default function WorkshopSections() {
+	const classes = useStyles();
 	const { loading, error, data } = useQuery(GET_SECTIONS);
 
 	if (loading) return 'Loading...';
 	if (error) return `Error! ${error.message}`;
+
 	return (
 		<Aux>
 			{data.sections.map(({ sectionTitle, id, lessons }) => (
@@ -38,7 +48,7 @@ export default function WorkshopSections() {
 					>
 						<Typography variant='h4'>{sectionTitle}</Typography>
 					</AccordionSummary>
-					<AccordionDetails>
+					<AccordionDetails className={classes.lessonBorder}>
 						<WorkshopLessons lessons={lessons} />
 					</AccordionDetails>
 				</Accordion>

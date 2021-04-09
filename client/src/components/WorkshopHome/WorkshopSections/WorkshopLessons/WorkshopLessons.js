@@ -4,12 +4,12 @@ import Typography from '@material-ui/core/Typography';
 
 export default function WorkshopLessons(props) {
 	return (
-		<Aux>
+		<div>
 			{props.lessons.map((lesson) => (
 				<Typography variant='h5' key={lesson.id}>
 					* {lesson.lessonTitle}
 				</Typography>
 			))}
-		</Aux>
+		</div>
 	);
 }
