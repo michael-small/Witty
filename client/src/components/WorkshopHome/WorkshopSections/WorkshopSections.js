@@ -36,7 +36,7 @@ export default function WorkshopSections() {
 						aria-controls='panel1a-content'
 						id='panel1a-header'
 					>
-						<Typography>{sectionTitle}</Typography>
+						<Typography variant='h4'>{sectionTitle}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
 						<WorkshopLessons lessons={lessons} />
