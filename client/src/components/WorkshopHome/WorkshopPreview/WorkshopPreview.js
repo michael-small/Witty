@@ -1,18 +1,60 @@
-import React, { Component } from 'react';
-import Aux from '../../hocs/Aux';
+import React from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
-// TODO 1: Consider converting to functional component
+const useStyles = makeStyles((theme) => ({
+	card: {
+		display: 'flex',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		marginBottom: '1rem',
+		[theme.breakpoints.up('md')]: {
+			width: '40%',
+		},
+		padding: '4px',
+	},
+	details: {
+		display: 'flex',
+		flexDirection: 'column',
+		width: '60%',
+	},
+	content: {
+		flex: '1 0 auto',
+	},
+	image: {
+		width: '240px',
+		height: '180px',
+		[theme.breakpoints.down('md')]: {
+			width: '30%',
+			display: `block`,
+		},
+	},
+}));
 
-// TODO 2: This may be redundant. `Workshop` may be all that is neccisary.
-//It could just conditionally only show title, subtitle, and pic and "link" to
-//the full workshop content. Same component, different state of preview vs full workshop.
+export default function WorkshopPreview(props) {
+	const classes = useStyles();
+	const theme = useTheme();
 
-export default class WorkshopPreview extends Component {
-	render() {
-		return (
-			<Aux>
-				<h1>Workshop Preview</h1>
-			</Aux>
-		);
-	}
+	return (
+		<Card className={classes.card} key={props.keyVal}>
+			<CardMedia
+				className={classes.image}
+				image={props.workshopImage}
+				title={props.workshopTitle}
+			/>
+			<div className={classes.details}>
+				<CardContent className={classes.content}>
+					<Typography component='h5' variant='h5'>
+						{props.workshopTitle}
+					</Typography>
+					<Typography variant='subtitle1' color='textSecondary'>
+						{props.workshopPreview}
+					</Typography>
+				</CardContent>
+			</div>
+		</Card>
+	);
 }

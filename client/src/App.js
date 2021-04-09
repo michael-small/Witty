@@ -8,7 +8,6 @@ import Profile from './components/Profile/Profile';
 import WorkshopHome from './components/WorkshopHome/WorkshopHome';
 import Workshop from './components/WorkshopHome/Workshop/Workshop';
 import BlogHome from './components/BlogHome/BlogHome';
-import WorkshopSection from './components/WorkshopHome/WorkshopSection/WorkshopSection';
 
 function App() {
 	return (
@@ -25,7 +24,7 @@ function App() {
 					<Route
 						exact
 						path='/workshopSectionDemo1'
-						component={WorkshopSection}
+						component={Workshop}
 					/>
 				</BrowserRouter>
 			</div>
