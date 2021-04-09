@@ -23,7 +23,7 @@ function App() {
 					<Route exact path='/blog' component={BlogHome} />
 					<Route
 						exact
-						path='/workshopSectionDemo1'
+						path='/workshop/:workshopId'
 						component={Workshop}
 					/>
 				</BrowserRouter>
