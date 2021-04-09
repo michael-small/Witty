@@ -3,6 +3,7 @@ import Aux from '../hocs/Aux';
 import WorkshopPreview from './WorkshopPreview/WorkshopPreview';
 import { Link } from 'react-router-dom';
 import './WorkshopHome.css';
+import styled from 'styled-components';
 
 import { gql, useQuery } from '@apollo/client';
 
@@ -24,11 +25,23 @@ export default function WorkshopHome() {
 	if (loading) return 'Loading...';
 	if (error) return `Error! ${error.message}`;
 
+	const StyledLink = styled(Link)`
+		text-decoration: none;
+		color: inherit;
+		&:focus,
+		&:hover,
+		&:visited,
+		&:link,
+		&:active {
+			text-decoration: none;
+		}
+	`;
+
 	return (
 		<Aux>
 			<h1 id='page-title'>Workshops</h1>
 			{data.workshops.map((workshop) => (
-				<Link to={`/workshop/${workshop.id}`}>
+				<StyledLink to={`/workshop/${workshop.id}`}>
 					<Aux key={workshop.id}>
 						<WorkshopPreview
 							keyVal={workshop.id}
@@ -37,7 +50,7 @@ export default function WorkshopHome() {
 							workshopImage={workshop.previewPhoto.url}
 						/>
 					</Aux>
-				</Link>
+				</StyledLink>
 			))}
 		</Aux>
 	);
