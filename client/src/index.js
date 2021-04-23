@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import {
+	ApolloClient,
+	InMemoryCache,
+	ApolloProvider,
+	HttpLink,
+} from '@apollo/client';
+import keys from './envs/keys';
+
+// prettier-ignore
+const httpLink = new HttpLink({
+	uri: `${keys.graphCMS_URI}`,
+	headers: {
+		Authorization: `Bearer ${keys.graphCMS_Authorization}`,
+	},
+	fetch,
+});
 
 const client = new ApolloClient({
-	uri:
-		'https://api-us-east-1.graphcms.com/v2/ckl1vzlnodp9d01z8g1f1g1pj/master',
+	link: httpLink,
 	cache: new InMemoryCache(),
 });
 

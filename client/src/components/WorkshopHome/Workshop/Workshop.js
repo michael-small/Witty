@@ -1,61 +1,34 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import './Workshop.css';
+import Aux from '../../hocs/Aux';
+import { useParams } from 'react-router-dom';
+import { gql, useQuery } from '@apollo/client';
+import WorkshopSections from '../WorkshopSections/WorkshopSections';
 
-const useStyles = makeStyles((theme) => ({
-	card: {
-		display: 'flex',
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		marginBottom: '1rem',
-		[theme.breakpoints.up('md')]: {
-			width: '40%',
-		},
-		padding: '4px',
-	},
-	details: {
-		display: 'flex',
-		flexDirection: 'column',
-		width: '60%',
-	},
-	content: {
-		flex: '1 0 auto',
-	},
-	image: {
-		width: '240px',
-		height: '180px',
-		[theme.breakpoints.down('md')]: {
-			width: '30%',
-			display: `block`,
-		},
-	},
-}));
+const GET_WORKSHOP = gql`
+	query GetWorkshop($id: ID) {
+		workshop(where: { id: $id }) {
+			workshopTitle
+			sections {
+				sectionTitle
+			}
+		}
+	}
+`;
 
-export default function MediaControlCard(props) {
-	const classes = useStyles();
-	const theme = useTheme();
+export default function Workshop() {
+	const { id } = useParams();
+
+	const { loading, error, data } = useQuery(GET_WORKSHOP, {
+		variables: { id: id },
+	});
+
+	if (loading) return 'Loading...';
+	if (error) return `Error! ${error.message}`;
 
 	return (
-		<Card className={classes.card}>
-			<CardMedia
-				className={classes.image}
-				image={props.workshopImage}
-				title={props.workshopTitle}
-			/>
-			<div className={classes.details}>
-				<CardContent className={classes.content}>
-					<Typography component='h5' variant='h5'>
-						{props.workshopTitle}
-					</Typography>
-					<Typography variant='subtitle1' color='textSecondary'>
-						{props.workshopPreview}
-					</Typography>
-				</CardContent>
-			</div>
-		</Card>
+		<Aux>
+			<h1>{data.workshop.workshopTitle}</h1>
+			<WorkshopSections workshopId={id} />
+		</Aux>
 	);
 }

@@ -1,23 +1,57 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Aux from '../hocs/Aux';
-import Workshop from './Workshop/Workshop';
+import WorkshopPreview from './WorkshopPreview/WorkshopPreview';
+import { Link } from 'react-router-dom';
 import './WorkshopHome.css';
-export default class WorkshopHome extends Component {
-	render() {
-		return (
-			<Aux>
-				<h1 id='page-title'>Workshops</h1>
-				<Workshop
-					workshopTitle='Skimming Readings for Key Points 101'
-					workshopPreview="The SAT encourages not actually reading the story and to just skim, so it's never a bad time to start learning how to do this..."
-					workshopImage='https://cdn.pixabay.com/photo/2017/04/21/02/00/book-2247427_960_720.png'
-				></Workshop>
-				<Workshop
-					workshopTitle='Writing Cleanly'
-					workshopPreview="You won't change any minds if your points are incredible but your writing is illegible. Learn tips on writing well."
-					workshopImage='https://cdn.pixabay.com/photo/2017/05/03/22/08/notebook-2282300_960_720.png'
-				></Workshop>
-			</Aux>
-		);
+import styled from 'styled-components';
+
+import { gql, useQuery } from '@apollo/client';
+
+const GET_WORKSHOPS = gql`
+	query GetWorkshops {
+		workshops {
+			id
+			workshopTitle
+			previewPhoto {
+				url
+			}
+			descriptionPreview
+		}
 	}
+`;
+export default function WorkshopHome() {
+	const StyledLink = styled(Link)`
+		text-decoration: none;
+		color: inherit;
+		&:focus,
+		&:hover,
+		&:visited,
+		&:link,
+		&:active {
+			text-decoration: none;
+		}
+	`;
+
+	const { loading, error, data } = useQuery(GET_WORKSHOPS);
+
+	if (loading) return 'Loading...';
+	if (error) return `Error! ${error.message}`;
+
+	return (
+		<Aux>
+			<h1 id='page-title'>Workshops</h1>
+			{data.workshops.map((workshop) => (
+				<StyledLink to={`/workshop/${workshop.id}`} key={workshop.id}>
+					<Aux>
+						<WorkshopPreview
+							keyVal={workshop.id}
+							workshopTitle={workshop.workshopTitle}
+							workshopPreview={workshop.descriptionPreview}
+							workshopImage={workshop.previewPhoto.url}
+						/>
+					</Aux>
+				</StyledLink>
+			))}
+		</Aux>
+	);
 }
