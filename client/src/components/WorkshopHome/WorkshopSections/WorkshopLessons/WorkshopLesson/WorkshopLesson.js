@@ -17,5 +17,5 @@ export default function WorkshopLesson(props) {
 	if (loading) return 'Loading...';
 	if (error) return `Error! ${error.message}`;
 
-	return <Typography variant='body1'>{data.lesson.lessonTitle}</Typography>;
+	return <Typography variant='h5'>{data.lesson.lessonTitle}</Typography>;
 }

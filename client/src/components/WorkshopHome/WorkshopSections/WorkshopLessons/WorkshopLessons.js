@@ -7,9 +7,7 @@ export default function WorkshopLessons(props) {
 	return (
 		<div>
 			{props.lessons.map((lesson) => (
-				<Typography variant='h5' key={lesson.id}>
-					<WorkshopLesson lessonId={lesson.id} />
-				</Typography>
+				<WorkshopLesson lessonId={lesson.id} key={lesson.id} />
 			))}
 		</div>
 	);
