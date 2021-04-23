@@ -5,7 +5,7 @@ import { gql, useQuery } from '@apollo/client';
 import WorkshopSections from '../WorkshopSections/WorkshopSections';
 
 const GET_WORKSHOP = gql`
-	query GetWorkshop($id: Integer!) {
+	query GetWorkshop($id: ID) {
 		workshop(where: { id: $id }) {
 			workshopTitle
 			sections {
@@ -28,7 +28,7 @@ export default function Workshop() {
 	return (
 		<Aux>
 			<h1>{data.workshop.workshopTitle}</h1>
-			<WorkshopSections />
+			<WorkshopSections workshopId={id} />
 		</Aux>
 	);
 }

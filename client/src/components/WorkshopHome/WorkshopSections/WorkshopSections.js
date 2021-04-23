@@ -10,9 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useParams } from 'react-router-dom';
+
 const GET_SECTIONS = gql`
-	query GetSections {
-		sections {
+	query GetSections($id: ID) {
+		sections(where: { workshop: { id: $id } }) {
 			id
 			lessons {
 				id
@@ -30,10 +32,13 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function WorkshopSections() {
+export default function WorkshopSections(props) {
 	const classes = useStyles();
-	const { loading, error, data } = useQuery(GET_SECTIONS);
+	const { id } = useParams();
 
+	const { loading, error, data } = useQuery(GET_SECTIONS, {
+		variables: { id: id },
+	});
 	if (loading) return 'Loading...';
 	if (error) return `Error! ${error.message}`;
 
