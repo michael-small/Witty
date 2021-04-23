@@ -20,11 +20,6 @@ const GET_WORKSHOPS = gql`
 	}
 `;
 export default function WorkshopHome() {
-	const { loading, error, data } = useQuery(GET_WORKSHOPS);
-
-	if (loading) return 'Loading...';
-	if (error) return `Error! ${error.message}`;
-
 	const StyledLink = styled(Link)`
 		text-decoration: none;
 		color: inherit;
@@ -37,12 +32,17 @@ export default function WorkshopHome() {
 		}
 	`;
 
+	const { loading, error, data } = useQuery(GET_WORKSHOPS);
+
+	if (loading) return 'Loading...';
+	if (error) return `Error! ${error.message}`;
+
 	return (
 		<Aux>
 			<h1 id='page-title'>Workshops</h1>
 			{data.workshops.map((workshop) => (
-				<StyledLink to={`/workshop/${workshop.id}`}>
-					<Aux key={workshop.id}>
+				<StyledLink to={`/workshop/${workshop.id}`} key={workshop.id}>
+					<Aux>
 						<WorkshopPreview
 							keyVal={workshop.id}
 							workshopTitle={workshop.workshopTitle}
