@@ -21,11 +21,7 @@ function App() {
 					<Route exact path='/workshops' component={WorkshopHome} />
 					<Route exact path='/workshop' component={Workshop} />
 					<Route exact path='/blog' component={BlogHome} />
-					<Route
-						exact
-						path='/workshop/:workshopId'
-						component={Workshop}
-					/>
+					<Route path='/workshop/:id' component={Workshop} />
 				</BrowserRouter>
 			</div>
 		</CssBaseline>
