@@ -48,10 +48,13 @@ function CompleteButton({ lessonComplete }) {
 	{
 		lessonComplete
 			? (button = (
+					// Not really semantically used as a button, but this conveniently has a consistent look
+					//that wouldn't have a differing shape or alignment or size as `NextLessonButton subFC`.
 					<Button
-						variant='contained'
+						variant='text'
 						color='default'
 						className={classes.button}
+						disabled
 					>
 						Lesson Complete!
 					</Button>
