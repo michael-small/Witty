@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Aux from '../hocs/Aux';
 
 const useStlyes = makeStyles((theme) => ({
 	headerCard: {
@@ -30,7 +31,54 @@ const useStlyes = makeStyles((theme) => ({
 		margin: '3px',
 	},
 	offset: theme.mixins.toolbar,
+	lessonText: {
+		padding: '3px',
+	},
 }));
+
+function CompleteButton() {
+	const classes = useStlyes();
+	const [lessonComplete, setLessonComplete] = useState(false);
+
+	let button;
+
+	{
+		lessonComplete
+			? (button = (
+					<Button
+						variant='contained'
+						color='default'
+						className={classes.button}
+					>
+						Lesson Complete!
+					</Button>
+			  ))
+			: (button = (
+					<Button
+						variant='contained'
+						color='default'
+						className={classes.button}
+						onClick={() => {
+							setLessonComplete(true);
+						}}
+					>
+						Mark Complete{' '}
+						<CheckBoxOutlineBlankIcon fontSize='medium' />
+					</Button>
+			  ));
+	}
+
+	return <Aux>{button}</Aux>;
+}
+
+function NextLessonButton() {
+	const classes = useStlyes();
+	return (
+		<Button variant='contained' color='default' className={classes.button}>
+			Part 2: Skimming Like a Pro <ChevronRightIcon fontSize='medium' />
+		</Button>
+	);
+}
 
 export default function LessonDEMO() {
 	const classes = useStlyes();
@@ -49,7 +97,7 @@ export default function LessonDEMO() {
 			/>
 			<img src={BookLessonHeader} className={classes.headerImg} />
 			<Paper>
-				<p>
+				<p className={classes.lessonText}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					Nunc in porta arcu. Curabitur tincidunt rutrum semper. Etiam
 					cursus sem et egestas finibus. Cras viverra congue lectus in
@@ -69,20 +117,8 @@ export default function LessonDEMO() {
 			</Paper>
 			<AppBar position='fixed' color='primary' className={classes.appBar}>
 				<Toolbar>
-					<Button
-						variant='contained'
-						color='default'
-						className={classes.button}
-					>
-						Mark Complete <CheckBoxOutlineBlankIcon />
-					</Button>
-					<Button
-						variant='contained'
-						color='default'
-						className={classes.button}
-					>
-						Part 2: Skimming Like a Pro <ChevronRightIcon />
-					</Button>
+					<CompleteButton />
+					<NextLessonButton />
 				</Toolbar>
 			</AppBar>
 			<div className={classes.offset} />
