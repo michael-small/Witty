@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile';
 import WorkshopHome from './components/WorkshopHome/WorkshopHome';
 import Workshop from './components/WorkshopHome/Workshop/Workshop';
 import BlogHome from './components/BlogHome/BlogHome';
+import DEMO_COCKPIT from './components/DEMO_COMPONENTS/DEMO_COCKPIT';
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					<Route exact path='/workshop' component={Workshop} />
 					<Route exact path='/blog' component={BlogHome} />
 					<Route path='/workshop/:id' component={Workshop} />
+					<Route path='/demo' component={DEMO_COCKPIT} />
 				</BrowserRouter>
 			</div>
 		</CssBaseline>
