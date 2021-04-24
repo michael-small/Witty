@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
@@ -36,9 +36,12 @@ const useStlyes = makeStyles((theme) => ({
 	},
 }));
 
-function CompleteButton() {
+function CompleteButton({ lessonComplete }) {
 	const classes = useStlyes();
-	const [lessonComplete, setLessonComplete] = useState(false);
+
+	useEffect(() => {
+		console.log(lessonComplete);
+	}, [lessonComplete]);
 
 	let button;
 
@@ -58,12 +61,8 @@ function CompleteButton() {
 						variant='contained'
 						color='default'
 						className={classes.button}
-						onClick={() => {
-							setLessonComplete(true);
-						}}
 					>
-						Mark Complete{' '}
-						<CheckBoxOutlineBlankIcon fontSize='medium' />
+						Mark Complete <CheckBoxOutlineBlankIcon />
 					</Button>
 			  ));
 	}
@@ -71,17 +70,33 @@ function CompleteButton() {
 	return <Aux>{button}</Aux>;
 }
 
-function NextLessonButton() {
+function NextLessonButton({ lessonComplete }) {
 	const classes = useStlyes();
+
+	useEffect(() => {
+		console.log(lessonComplete);
+	}, [lessonComplete]);
+
 	return (
-		<Button variant='contained' color='default' className={classes.button}>
-			Part 2: Skimming Like a Pro <ChevronRightIcon fontSize='medium' />
-		</Button>
+		<span>
+			{lessonComplete && (
+				<Button
+					variant='contained'
+					color='default'
+					className={classes.button}
+				>
+					Part 2: Skimming Like a Pro <ChevronRightIcon />
+				</Button>
+			)}
+		</span>
 	);
 }
 
 export default function LessonDEMO() {
 	const classes = useStlyes();
+
+	const [lessonComplete, setLessonComplete] = useState(false);
+
 	return (
 		<div>
 			<CardHeader
@@ -117,8 +132,16 @@ export default function LessonDEMO() {
 			</Paper>
 			<AppBar position='fixed' color='primary' className={classes.appBar}>
 				<Toolbar>
-					<CompleteButton />
-					<NextLessonButton />
+					{/* `onClick` must be on some parent element of the button being passed props */}
+					{/* `<span>` does somehow minorly impact the button, but `<Aux>` didn't work */}
+					{/* `<Aux> could be redone to handle clicks like this SO suggestion, but I'm fine for now: https://stackoverflow.com/a/54522871` */}
+					<span onClick={() => setLessonComplete(true)}>
+						<CompleteButton
+							lessonComplete={lessonComplete}
+							onClick={() => setLessonComplete(true)}
+						/>
+					</span>
+					<NextLessonButton lessonComplete={lessonComplete} />
 				</Toolbar>
 			</AppBar>
 			<div className={classes.offset} />
