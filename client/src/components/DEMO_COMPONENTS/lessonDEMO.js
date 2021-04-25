@@ -16,6 +16,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Aux from '../hocs/Aux';
 
 const useStlyes = makeStyles((theme) => ({
+	root: {
+		[theme.breakpoints.up('elev_thous')]: {
+			marginLeft: '30%',
+			marginRight: '40%',
+		},
+	},
 	headerCard: {
 		backgroundColor: '#f8f8ff',
 		color: '#000',
@@ -102,7 +108,7 @@ export default function LessonDEMO() {
 	const [lessonComplete, setLessonComplete] = useState(false);
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<CardHeader
 				avatar={<Avatar src={JP_Workshop} aria-label=''></Avatar>}
 				action={
@@ -134,7 +140,11 @@ export default function LessonDEMO() {
 					volutpat bibendum fermentum et ante.
 				</p>
 			</Paper>
-			<AppBar position='fixed' color='primary' className={classes.appBar}>
+			<AppBar
+				position='relative'
+				color='primary'
+				className={classes.appBar}
+			>
 				<Toolbar>
 					{/* `onClick` must be on some parent element of the button being passed props */}
 					{/* `<span>` does somehow minorly impact the button, but `<Aux>` didn't work */}
@@ -148,7 +158,7 @@ export default function LessonDEMO() {
 					<NextLessonButton lessonComplete={lessonComplete} />
 				</Toolbar>
 			</AppBar>
-			<div className={classes.offset} />
+			{/* <div className={classes.offset} /> */}
 		</div>
 	);
 }
