@@ -26,6 +26,7 @@ const useStlyes = makeStyles((theme) => ({
 	appBar: {
 		top: 'auto',
 		bottom: '0',
+		alignItems: 'center',
 	},
 	button: {
 		margin: '3px',
