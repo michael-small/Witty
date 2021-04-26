@@ -15,6 +15,16 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Aux from '../hocs/Aux';
 
+import { gql, useQuery } from '@apollo/client';
+
+const GET_LESSON = gql`
+	query GetLesson {
+		lesson(where: { id: "ckn9m6h6wa4hi0b71tgc4vj2u" }) {
+			lessonTitle
+		}
+	}
+`;
+
 const useStlyes = makeStyles((theme) => ({
 	root: {
 		[theme.breakpoints.up('elev_thous')]: {
@@ -107,6 +117,11 @@ export default function LessonDEMO() {
 
 	const [lessonComplete, setLessonComplete] = useState(false);
 
+	const { loading, error, data } = useQuery(GET_LESSON);
+
+	if (loading) return 'Loading...';
+	if (error) return `Error! ${error.message}`;
+
 	return (
 		<div className={classes.root}>
 			<CardHeader
@@ -116,7 +131,7 @@ export default function LessonDEMO() {
 						<BookmarksIcon />
 					</IconButton>
 				}
-				title='Skimming Essentials'
+				title={data.lesson.lessonTitle}
 				subheader='Skimming: Skimming Overview'
 				className={classes.headerCard}
 			/>
