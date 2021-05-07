@@ -23,6 +23,7 @@ const GET_LESSON = gql`
 		lesson(where: { id: "ckn9m6h6wa4hi0b71tgc4vj2u" }) {
 			lessonTitle
 			vimeoVideo
+			lessonContentSimplified
 		}
 	}
 `;
@@ -152,21 +153,7 @@ export default function LessonDEMO() {
 			</div>
 			<Paper>
 				<p className={classes.lessonText}>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Nunc in porta arcu. Curabitur tincidunt rutrum semper. Etiam
-					cursus sem et egestas finibus. Cras viverra congue lectus in
-					posuere. Donec pretium euismod ligula eu sodales. Etiam orci
-					lorem, aliquet a nunc eget, pulvinar interdum sapien. Duis
-					eget convallis quam. Sed enim sapien, porta nec erat ut,
-					pulvinar congue metus. Cras ultricies nisi faucibus diam
-					imperdiet, sed luctus ligula convallis. Ut eu eros lorem.
-					Donec ac posuere lacus, id consequat leo. Suspendisse
-					potenti. Etiam imperdiet sapien quis sapien venenatis, et
-					pellentesque purus congue. Cras fermentum vel felis quis
-					porttitor. Donec sed ultricies nulla. Donec lobortis cursus
-					neque. Sed non justo nulla. Maecenas malesuada lectus at mi
-					dignissim, eu feugiat dolor ultrices. In eget arcu vel erat
-					volutpat bibendum fermentum et ante.
+					{data.lesson.lessonContentSimplified}
 				</p>
 			</Paper>
 			<AppBar
