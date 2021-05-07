@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
@@ -70,10 +70,6 @@ const useStlyes = makeStyles((theme) => ({
 function CompleteButton({ lessonComplete }) {
 	const classes = useStlyes();
 
-	useEffect(() => {
-		console.log(lessonComplete);
-	}, [lessonComplete]);
-
 	let button;
 
 	{
@@ -106,10 +102,6 @@ function CompleteButton({ lessonComplete }) {
 
 function NextLessonButton({ lessonComplete }) {
 	const classes = useStlyes();
-
-	useEffect(() => {
-		console.log(lessonComplete);
-	}, [lessonComplete]);
 
 	return (
 		<span>
@@ -195,7 +187,6 @@ export default function LessonDEMO() {
 					<NextLessonButton lessonComplete={lessonComplete} />
 				</Toolbar>
 			</AppBar>
-			{/* <div className={classes.offset} /> */}
 		</div>
 	);
 }
