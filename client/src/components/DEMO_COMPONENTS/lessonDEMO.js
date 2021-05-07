@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Aux from '../hocs/Aux';
+import ReactPlayer from 'react-player';
 
 import { gql, useQuery } from '@apollo/client';
 
@@ -21,15 +22,18 @@ const GET_LESSON = gql`
 	query GetLesson {
 		lesson(where: { id: "ckn9m6h6wa4hi0b71tgc4vj2u" }) {
 			lessonTitle
+			vimeoVideo
 		}
 	}
 `;
 
 const useStlyes = makeStyles((theme) => ({
+	// Aaron would rather the white be consistent behind extra video space
+	// the whole root is white bg
 	root: {
 		[theme.breakpoints.up('elev_thous')]: {
-			marginLeft: '30%',
-			marginRight: '40%',
+			marginLeft: '20%',
+			marginRight: '20%',
 		},
 	},
 	headerCard: {
@@ -50,6 +54,16 @@ const useStlyes = makeStyles((theme) => ({
 	offset: theme.mixins.toolbar,
 	lessonText: {
 		padding: '3px',
+	},
+	playerWrapper: {
+		position: 'relative',
+		paddingTop: '56.25%',
+		marginTop: '14px',
+	},
+	reactPlayer: {
+		position: 'absolute',
+		top: '0',
+		left: '0',
 	},
 }));
 
@@ -135,7 +149,15 @@ export default function LessonDEMO() {
 				subheader='Skimming: Skimming Overview'
 				className={classes.headerCard}
 			/>
-			<img src={BookLessonHeader} className={classes.headerImg} />
+			<div className={classes.playerWrapper}>
+				<ReactPlayer
+					url={data.lesson.vimeoVideo}
+					width='100%'
+					height='100%'
+					controls={true}
+					className={classes.reactPlayer}
+				/>
+			</div>
 			<Paper>
 				<p className={classes.lessonText}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
