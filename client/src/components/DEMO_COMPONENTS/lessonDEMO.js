@@ -36,6 +36,7 @@ const useStlyes = makeStyles((theme) => ({
 			marginLeft: '20%',
 			marginRight: '20%',
 		},
+		paddingBottom: '3px',
 	},
 	headerCard: {
 		backgroundColor: '#f8f8ff',
